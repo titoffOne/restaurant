@@ -1,0 +1,106 @@
+/* Страница меню */
+.menu-page {
+    padding: 20px;
+}
+
+.menu-categories {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: #eeeeee;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-categories a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.menu-categories a:hover {
+    color: #555555;
+}
+
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.menu-card {
+    width: 200px;
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.menu-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.menu-card p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+.menu-card span {
+    font-weight: bold;
+    color: #000000;
+}
+
+.menu-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для формы поиска */
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.search-form input[type="text"] {
+    width: 250px;
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-form input[type="text"]:focus {
+    border-color: #555;
+}
+
+.search-form button {
+    padding: 8px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-left: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #333;
+}

@@ -1,0 +1,42 @@
+<header th:fragment="header">
+    <a href="/home">
+        <img src="/img/logo1.png" alt="LOGO"  class="logo">
+    </a>
+
+    <!-- Неавторизованные -->
+    <nav th:if="${#authentication == null or #authentication.class == T(org.springframework.security.authentication.AnonymousAuthenticationToken)}">
+        <a href="/menu">Меню</a>
+        <a href="/bookings">Бронирование</a>
+        <a href="/reviews">Отзывы</a>
+        <a href="/contacts">Контакты</a>
+        <a href="/profile">
+            <img src="/img/user-icon.png" class="profile-icon">
+        </a>
+    </nav>
+
+    <!-- Пользователь -->
+    <nav th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_USER'].size() > 0}">
+        <a href="/menu">Меню</a>
+        <a href="/bookings">Бронирование</a>
+        <a href="/reviews">Отзывы</a>
+        <a href="/contacts">Контакты</a>
+        <a href="/profile">
+            <img src="/img/user-icon.png" class="profile-icon">
+        </a>
+    </nav>
+
+    <!-- Администратор -->
+    <nav th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">
+        <a href="/bookings/all">Бронирование</a>
+        <a href="/reviews">Отзывы</a>
+        <a href="/users">Пользователи</a>
+        <a href="/profile">
+            <img src="/img/user-icon.png" class="profile-icon">
+        </a>
+    </nav>
+
+
+
+
+
+</header>

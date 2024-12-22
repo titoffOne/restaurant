@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Бронирование</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/booking.css}">
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+<div class="reservation-page">
+    <img src="/img/booking.jpg" alt="LOGO" class="logo-full">
+
+    <h1 th:if="${#authentication == null or #authentication.class == T(org.springframework.security.authentication.AnonymousAuthenticationToken)}">
+        Войдите в систему, чтобы создать бронирование
+    </h1>
+
+    <h1 th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_USER'].size() > 0}">
+        Забронировать столик
+    </h1>
+
+    <form th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_USER'].size() > 0}"
+            th:action="@{/bookings/new}" th:object="${booking}" method="post">
+        <label for="clientName">Как к вам обращаться?</label>
+        <input type="text" id="clientName" th:field="*{clientName}" placeholder="Введите ваше имя" required>
+
+        <label for="phoneNumber">Телефон</label>
+        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Введите контактный телефон" required>
+
+        <label for="numberOfGuests">Количество гостей</label>
+        <input type="number" id="numberOfGuests" th:field="*{numberOfGuests}" placeholder="Введите количество гостей" required>
+
+        <label for="reservationDateTime">Дата и время бронирования</label>
+        <input type="datetime-local" id="reservationDateTime" th:field="*{reservationDateTime}" pattern="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}" required>
+
+        <button type="submit">Забронировать</button>
+    </form>
+
+    <h2 th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">
+        Список бронирований
+    </h2>
+
+    <table th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}"
+           class="booking-table">
+        <thead>
+        <tr>
+            <th>Имя клиента</th>
+            <th>Телефон</th>
+            <th>Гости</th>
+            <th>Дата и время</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.clientName}"></td>
+            <td th:text="${booking.phoneNumber}"></td>
+            <td th:text="${booking.numberOfGuests}"></td>
+            <td th:text="${#temporals.format(booking.reservationDateTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td>
+                <form th:action="@{'/bookings/delete/' + ${booking.id}}" method="post">
+                    <button type="submit" class="delete-btn">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

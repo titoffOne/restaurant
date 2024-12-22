@@ -1,0 +1,39 @@
+/* Страница бронирования */
+.reservation-page {
+    padding: 20px;
+}
+
+.reservation-page form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+}
+
+.reservation-page label {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.reservation-page input,
+.reservation-page button {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.reservation-page button {
+    margin-top: 15px;
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reservation-page button:hover {
+    background-color: #333333;
+}
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Гастробар Есть</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/home.css}">
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<main class="home-page">
+    <div class="half-page">
+        <img src="/img/home1.jpg" alt="LOGO" class="logo-full">
+    </div>
+
+    <div class="home-description">
+        <p>Добро пожаловать в наш ресторан! Мы предлагаем лучшие блюда для всех гурманов.</p>
+        <a href="/menu" class="button">Меню</a>
+    </div>
+</main>
+
+</body>
+</html>

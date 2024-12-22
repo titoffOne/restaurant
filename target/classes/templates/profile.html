@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Мой профиль</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/profile.css}">
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<main class="profile-page">
+    <h2>Здравствуйте, <span th:text="${user.name}">Имя пользователя</span>!</h2>
+
+    <p class="user-role">
+        <span th:if="${user.role.name == 'USER'}">Клиент</span>
+        <span th:if="${user.role.name == 'ADMIN'}">Администратор</span>
+    </p>
+
+    <div class="user-info">
+<!--        Сюда добавить отображение роли пользователя -->
+        <p><strong>Почта:</strong> <span th:text="${user.email}">Почта пользователя</span></p>
+        <p><strong>Телефон:</strong> <span th:text="${user.phone}">Телефон пользователя</span></p>
+    </div>
+
+    <form th:action="@{/profile/change-password}" method="post" class="password-change-form">
+        <h3>Сменить пароль</h3>
+        <label for="oldPassword">Старый пароль</label>
+        <input type="password" id="oldPassword" name="oldPassword" required>
+        <label for="newPassword">Новый пароль</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+        <button type="submit">Обновить пароль</button>
+    </form>
+
+    <div th:if="${message}" class="success-message" th:text="${message}"></div>
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+    <form th:action="@{/logout}" method="post" class="logout-form">
+        <button type="submit">Выйти</button>
+    </form>
+</main>
+</body>
+</html>

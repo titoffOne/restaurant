@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Регистрация</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/register.css}">
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<main class="register-page">
+    <h2>Регистрация</h2>
+
+    <form th:action="@{/register}" th:object="${user}" method="post" class="register-form">
+        <label for="name">Имя</label>
+        <input type="text" id="name" th:field="*{name}" required>
+        <label for="email">Почта</label>
+        <input type="email" id="email" th:field="*{email}" required>
+        <label for="phone">Телефон</label>
+        <input type="tel" id="phone" th:field="*{phone}" required>
+        <label for="role">Роль</label>
+        <select id="role" th:field="*{role}" required>
+            <option value="USER">Клиент</option>
+            <option value="ADMIN">Администратор</option>
+        </select>
+        <label for="password">Пароль</label>
+        <input type="password" id="password" th:field="*{password}" required>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+
+    <p th:if="${error}" th:text="${error}"></p>
+    <p th:if="${message}" th:text="${message}"></p>
+</main>
+
+</body>
+</html>

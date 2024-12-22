@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Restaurant - Отзывы</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/reviews.css}">
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<main class="reviews-page">
+    <img src="/img/home2.jpg" alt="LOGO" class="logo-full">
+
+    <div class="reviews">
+        <h2>Все отзывы</h2>
+        <div th:each="review : ${reviews}" class="review">
+            <div class="review-content">
+                <div class="review-text">
+                    <h4 th:text="${review.name}">Имя</h4>
+                    <p th:text="${review.message}">Отзыв</p>
+                </div>
+                <form th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}"
+                      th:action="@{/reviews/delete(id=${review.id})}" method="post">
+                    <button type="submit" class="delete-button">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <form th:if="${#authentication != null and #authentication.authorities.?[authority == 'ROLE_USER'].size() > 0}"
+          th:action="@{/reviews}" th:object="${feedback}" method="post" class="review-form">
+        <h2>Оставьте ваш отзыв</h2>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Ваше имя" required>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+        <label for="email">Электронная почта:</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Ваш адрес электронной почты" required>
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+        <label for="message">Отзыв:</label>
+        <textarea id="message" th:field="*{message}" placeholder="Ваш отзыв" rows="5" required></textarea>
+        <p th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
+
+        <button type="submit">Оставить отзыв</button>
+    </form>
+</main>
+</body>
+</html>

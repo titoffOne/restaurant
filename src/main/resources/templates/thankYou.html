@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Спасибо за отзыв!</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/reviews.css">
+</head>
+<body class="thankYou">
+<div th:insert="blocks/header :: header"></div>
+
+<main class="thank-you-page">
+    <h2>Спасибо за ваш отзыв!</h2>
+    <p>Мы ценим ваше мнение и рады, что вы нашли время поделиться им с нами.</p>
+    <a href="/home" class="button">На главную</a>
+</main>
+</body>
+</html>

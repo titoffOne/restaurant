@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Меню</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/menu.css}">
+</head>
+<body>
+<div th:insert="blocks/header :: header"></div>
+
+<main class="menu-page">
+    <form th:action="@{/menu/search}" method="get" class="search-form">
+        <input type="text" name="name" placeholder="Поиск блюда" required>
+        <button type="submit">Поиск</button>
+    </form>
+
+    <div class="menu-categories">
+        <a th:href="@{/menu}">Все</a>
+        <a th:each="category : ${categories}"
+           th:href="@{/menu/{category}(category=${category.id})}"
+           th:text="${category.name}"></a>
+    </div>
+
+    <section class="menu-items">
+        <div th:each="item : ${menuItems}" class="menu-card">
+            <img th:src="${item.imageUrl}" alt="Dish image">
+            <h3 th:text="${item.name}">Название блюда</h3>
+            <p th:text="${item.description}">Описание блюда</p>
+            <span th:text="'Вес: ' + ${item.weight} + ' г'">Вес: 140 г</span>
+        </div>
+    </section>
+</main>
+</body>
+</html>

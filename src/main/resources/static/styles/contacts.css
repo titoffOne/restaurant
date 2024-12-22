@@ -1,0 +1,35 @@
+/* Страница контактов */
+.contacts-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    color: #333333;
+}
+
+.contacts-page h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.contacts-page p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.contacts-page strong {
+    color: #000000;
+}
+
+.contacts-page .map {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contacts-page .map img {
+    max-width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
